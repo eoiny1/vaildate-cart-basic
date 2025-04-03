@@ -2,6 +2,18 @@ query RunInput {
   cart {
     lines {
       quantity
+      merchandise {
+        ... on ProductVariant {
+          id
+          product {
+            id
+            hasAnyTag(tags: ["limit-quantity-1"])
+            metafield(namespace: "custom", key: "quantity_limit") {
+              value
+            }
+          }
+        }
+      }
     }
   }
 }
